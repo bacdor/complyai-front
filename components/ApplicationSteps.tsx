@@ -28,6 +28,7 @@ import {
   FileCheck,
   CheckCircle,
   ArrowRight,
+  FileText,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -232,6 +233,25 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
         <CardTitle>AI Code Analysis</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        {/* Display uploaded file */}
+        {/* {projectDetails.pdf_file && ( */}
+        <div className="p-4 bg-gray-50 rounded-lg mb-4">
+          <div className="flex items-center gap-2">
+            <FileText className="h-5 w-5 text-blue-500" />
+            <span className="font-medium">Uploaded Document:</span>
+            <span className="text-gray-600">{fileName}</span>
+            <a
+              href={projectDetails.pdf_file}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto text-blue-600 hover:text-blue-800 text-sm"
+            >
+              View Document
+            </a>
+          </div>
+        </div>
+        {/* )} */}
+
         {results.map((item, index) => (
           <div key={index} className="p-4 bg-gray-50 rounded-lg">
             <div className="flex items-start gap-4">
