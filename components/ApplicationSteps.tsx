@@ -394,19 +394,32 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
         ))}
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={() => setCurrentStep(2)}>
-          Discard
-        </Button>
-        <Button onClick={simulateSubmission} disabled={loading}>
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Processing
-            </>
-          ) : (
-            "Submit"
-          )}
-        </Button>
+        <div>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setCurrentStep(2);
+              setUploadProgress(0);
+            }}
+          >
+            Back
+          </Button>
+        </div>
+        <div className="flex gap-4">
+          <Button variant="outline" onClick={() => setCurrentPage("dashboard")}>
+            Discard
+          </Button>
+          <Button onClick={simulateSubmission} disabled={loading}>
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Processing
+              </>
+            ) : (
+              "Submit"
+            )}
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );
