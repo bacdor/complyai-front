@@ -377,11 +377,12 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
               {item.status === "non-compliant" && (
                 <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
               )}
-              {item.status === "other" && (
-                <div className="h-5 w-5 rounded-full border-2 border-gray-400 flex items-center justify-center text-xs text-gray-400 font-medium mt-0.5 flex-shrink-0">
-                  N/A
-                </div>
-              )}
+              {item.status !== "compliant" &&
+                item.status !== "non-compliant" && (
+                  <div className="h-5 w-5 rounded-full border-2 border-gray-400 flex items-center justify-center text-xs text-gray-400 font-medium mt-0.5 flex-shrink-0">
+                    N/A
+                  </div>
+                )}
 
               {/* Content */}
               <div className="flex-1 space-y-2">
@@ -413,7 +414,7 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
                       ? "Compliant"
                       : item.status === "non-compliant"
                       ? "Non-Compliant"
-                      : "Pending Review"}
+                      : "Warning"}
                   </span>
                 </div>
 
