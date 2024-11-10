@@ -234,23 +234,19 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Display uploaded file */}
-        {/* {projectDetails.pdf_file && ( */}
-        <div className="p-4 bg-gray-50 rounded-lg mb-4">
-          <div className="flex items-center gap-2">
-            <FileText className="h-5 w-5 text-blue-500" />
-            <span className="font-medium">Uploaded Document:</span>
-            <span className="text-gray-600">{fileName}</span>
-            <a
-              href={projectDetails.pdf_file}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-auto text-blue-600 hover:text-blue-800 text-sm"
-            >
-              View Document
-            </a>
+        {projectDetails.pdf_file && (
+          <div className="p-4 bg-gray-50 rounded-lg mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <FileText className="h-5 w-5 text-blue-500" />
+              <span className="font-medium">Uploaded Document:</span>
+              <span className="text-gray-600">{fileName}</span>
+            </div>
+            <iframe
+              src={projectDetails.pdf_file}
+              className="w-full h-96 border rounded"
+            />
           </div>
-        </div>
-        {/* )} */}
+        )}
 
         {results.map((item, index) => (
           <div key={index} className="p-4 bg-gray-50 rounded-lg">
