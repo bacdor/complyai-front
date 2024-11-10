@@ -148,6 +148,19 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
         <CardTitle>Create Project</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="project-name">Project Name</Label>
+          <Input id="project-name" placeholder="Enter project name" />
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="project-image">Project Image</Label>
+          <div className="border-2 border-dashed rounded-lg p-6 text-center">
+            <Upload className="mx-auto h-12 w-12 text-gray-400" />
+            <div className="mt-2">Drag and drop or click to upload</div>
+          </div>
+        </div>
+
         <div className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="street-address">Street Address</Label>
@@ -158,6 +171,62 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
               onChange={handleAddressChange}
             />
           </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="city">City</Label>
+              <Input id="city" placeholder="City" />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="state">State</Label>
+              <Select>
+                <SelectTrigger id="state">
+                  <SelectValue placeholder="Select state" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="NY">New York</SelectItem>
+                  <SelectItem value="CA">California</SelectItem>
+                  <SelectItem value="TX">Texas</SelectItem>
+                  <SelectItem value="FL">Florida</SelectItem>
+                  <SelectItem value="IL">Illinois</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="zipcode">ZIP Code</Label>
+              <Input id="zipcode" placeholder="ZIP code" maxLength={5} />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="unit">Unit/Apt (Optional)</Label>
+              <Input id="unit" placeholder="Unit number" />
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            className="w-full mt-2"
+            // onClick={() => setAddressVerified(true)}
+          >
+            <Building2 className="mr-2 h-4 w-4" />
+            Verify Address
+          </Button>
+
+          {addressVerified && (
+            <Alert className="mt-4 bg-green-50 border-green-200">
+              <CheckCircle className="h-4 w-4 text-green-600" />
+              <AlertDescription className="text-green-800">
+                The provided address has been verified successfully.
+              </AlertDescription>
+            </Alert>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="other-details">Other Details</Label>
+          <Textarea id="other-details" placeholder="Enter additional details" />
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
