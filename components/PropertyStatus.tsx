@@ -11,6 +11,7 @@ import {
   Send,
   Upload,
   MessageSquare,
+  ArrowLeft,
 } from "lucide-react";
 // import { Separator } from "@/components/ui/separator";
 
@@ -137,6 +138,16 @@ const PropertyStatus: React.FC<PropertyStatusProps> = ({
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          onClick={() => setCurrentPage("dashboard")}
+          className="mb-6 hover:bg-gray-100"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Dashboard
+        </Button>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column */}
           <div className="space-y-6">
