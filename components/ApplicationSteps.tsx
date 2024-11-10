@@ -47,9 +47,11 @@ interface ProjectDetails {
 }
 
 interface RequirementResult {
-  requirement: string;
+  code: string;
+  codeRef: string;
   status: string;
-  reason: string;
+  description: string;
+  recommendation: string | null;
 }
 
 const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
@@ -369,13 +371,13 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
           <div key={index} className="p-4 bg-gray-50 rounded-lg">
             <div className="flex items-start gap-4">
               {/* Status Icon */}
-              {item.status === "met" && (
+              {item.status === "compliant" && (
                 <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
               )}
-              {item.status === "not-met" && (
+              {item.status === "non-compliant" && (
                 <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
               )}
-              {item.status === "not-addressed" && (
+              {item.status === "other" && (
                 <div className="h-5 w-5 rounded-full border-2 border-gray-400 flex items-center justify-center text-xs text-gray-400 font-medium mt-0.5 flex-shrink-0">
                   N/A
                 </div>
@@ -384,39 +386,39 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
               {/* Content */}
               <div className="flex-1 space-y-2">
                 <div className="flex items-center justify-between">
-                  <div className="font-medium">{item.requirement}</div>
-                  {/* <a
-                    href={item.codeUrl}
+                  <div className="font-medium">{item.code}</div>
+                  <a
+                    // href={item.codeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-blue-600 hover:text-blue-800"
                   >
                     {item.codeRef}
-                  </a> */}
+                  </a>
                 </div>
-                <div className="text-sm text-gray-600">{item.reason}</div>
+                <div className="text-sm text-gray-600">{item.description}</div>
 
                 {/* Status Badge */}
                 <div className="flex items-center gap-2">
                   <span
                     className={`text-xs font-medium px-2 py-1 rounded-full ${
-                      item.status === "met"
+                      item.status === "compliant"
                         ? "bg-green-100 text-green-800"
-                        : item.status === "not-met"
+                        : item.status === "non-compliant"
                         ? "bg-red-100 text-red-800"
                         : "bg-gray-100 text-gray-800"
                     }`}
                   >
-                    {item.status === "met"
+                    {item.status === "compliant"
                       ? "Compliant"
-                      : item.status === "not-met"
+                      : item.status === "non-compliant"
                       ? "Non-Compliant"
                       : "Pending Review"}
                   </span>
                 </div>
 
                 {/* Recommendation for non-compliant items */}
-                {/* {item.status === "non-compliant" && item.recommendation && (
+                {item.status === "non-compliant" && item.recommendation && (
                   <div className="mt-2 text-sm bg-red-50 p-3 rounded-md">
                     <div className="font-medium text-red-800">
                       Recommended Actions:
@@ -425,17 +427,17 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
                       {item.recommendation}
                     </div>
                   </div>
-                )} */}
+                )}
 
                 {/* Recommendation for N/A items */}
-                {/* {item.status === "n/a" && item.recommendation && (
+                {item.status === "n/a" && item.recommendation && (
                   <div className="mt-2 text-sm bg-gray-100 p-3 rounded-md">
                     <div className="font-medium text-gray-800">
                       Required Action:
                     </div>
                     <div className="text-gray-700">{item.recommendation}</div>
                   </div>
-                )} */}
+                )}
               </div>
             </div>
           </div>
