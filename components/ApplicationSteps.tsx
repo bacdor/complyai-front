@@ -68,6 +68,7 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
     pdf_file: "",
     address: "",
   });
+  const [projectImage, setProjectImage] = useState<string | null>(null);
 
   const simulateUpload = async () => {
     setLoading(true);
@@ -142,6 +143,14 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
     }
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const imageUrl = URL.createObjectURL(file);
+      setProjectImage(imageUrl);
+    }
+  };
+
   const renderStep1 = () => (
     <Card className="w-full max-w-2xl mx-auto">
       <CardHeader>
@@ -156,8 +165,27 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
         <div className="space-y-2">
           <Label htmlFor="project-image">Project Image</Label>
           <div className="border-2 border-dashed rounded-lg p-6 text-center">
-            <Upload className="mx-auto h-12 w-12 text-gray-400" />
-            <div className="mt-2">Drag and drop or click to upload</div>
+            <input
+              type="file"
+              id="project-image"
+              accept="image/*"
+              onChange={handleImageUpload}
+              className="hidden"
+            />
+            <label htmlFor="project-image" className="cursor-pointer">
+              {projectImage ? (
+                <img
+                  src={projectImage}
+                  alt="Project preview"
+                  className="mx-auto max-h-48 object-contain"
+                />
+              ) : (
+                <>
+                  <Upload className="mx-auto h-12 w-12 text-gray-400" />
+                  <div className="mt-2">Drag and drop or click to upload</div>
+                </>
+              )}
+            </label>
           </div>
         </div>
 
