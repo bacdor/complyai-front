@@ -29,6 +29,7 @@ import {
   CheckCircle,
   ArrowRight,
   FileText,
+  Maximize2,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -333,14 +334,33 @@ const ApplicationSteps: React.FC<ApplicationStepsProps> = ({
         {/* Display uploaded file */}
         {projectDetails.pdf_file && (
           <div className="p-4 bg-gray-50 rounded-lg mb-4">
-            <div className="flex items-center gap-2 mb-2">
-              <FileText className="h-5 w-5 text-blue-500" />
-              <span className="font-medium">Uploaded Document:</span>
-              <span className="text-gray-600">{fileName}</span>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex items-center gap-2">
+                <FileText className="h-5 w-5 text-blue-500" />
+                <span className="font-medium">Uploaded Document:</span>
+                <span className="text-gray-600">{fileName}</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  const iframe = document.querySelector("iframe");
+                  if (iframe) {
+                    if (document.fullscreenElement) {
+                      document.exitFullscreen();
+                    } else {
+                      iframe.requestFullscreen();
+                    }
+                  }
+                }}
+              >
+                <Maximize2 className="h-4 w-4" />
+              </Button>
             </div>
             <iframe
               src={projectDetails.pdf_file}
               className="w-full h-96 border rounded"
+              allowFullScreen
             />
           </div>
         )}
