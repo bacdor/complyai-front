@@ -1,5 +1,6 @@
 "use client";
 
+import AdminDashboard from "@/components/AdminDashboard";
 import ApplicationSteps from "@/components/ApplicationSteps";
 import Dashboard from "@/components/Dashboard";
 import PropertyStatus from "@/components/PropertyStatus";
@@ -33,6 +34,13 @@ export default function Page() {
             setCurrentPage={setCurrentPage}
             onClose={() => setCurrentPage("dashboard")}
             onComplete={() => setCurrentPage("dashboard")}
+          />
+        );
+      case "admin":
+        return (
+          <AdminDashboard
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         );
       default:

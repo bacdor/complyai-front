@@ -2,7 +2,14 @@ import React from "react";
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Building2, Files, HelpCircle, Home, Settings } from "lucide-react";
+import {
+  Building2,
+  Files,
+  HelpCircle,
+  Home,
+  Settings,
+  SwitchCamera,
+} from "lucide-react";
 
 interface DashboardProps {
   currentPage: string;
@@ -47,7 +54,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       {/* Header */}
       <header className="bg-white border-b">
         <div className="flex items-center justify-between px-6 py-4">
-          <div className="text-2xl font-bold text-orange-600">PropertyDash</div>
+          <div className="text-2xl font-bold text-orange-600">Dashboard</div>
         </div>
       </header>
 
@@ -64,6 +71,14 @@ const Dashboard: React.FC<DashboardProps> = ({
                 {item.label}
               </button>
             ))}
+            <Button
+              className="flex items-center w-full px-4 py-2 mt-4 text-sm opacity-0"
+              variant="outline"
+              onClick={() => setCurrentPage("admin")}
+            >
+              <SwitchCamera className="w-4 h-4 mr-2" />
+              Switch View
+            </Button>
           </nav>
         </aside>
 
